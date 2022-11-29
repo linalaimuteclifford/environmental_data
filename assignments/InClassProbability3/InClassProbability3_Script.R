@@ -1,0 +1,85 @@
+## In Class Probabilty 3
+## Lina Clifford
+
+# Question 2
+Quest2Prob4of6 <- dbinom(x = 4, size = 6, prob = 0.66, log = FALSE)
+print(Quest2Prob4of6)
+
+# Question 3
+Quest3Prob0 <- dbinom(x = 0, size = 7, prob =4/6)
+
+# Question 4
+Que4 <- pbinom(q = 4, size = 6, prob = 2/3, lower.tail = TRUE, log.p = FALSE)
+
+#Question 5
+Que5 <- pbinom(q = 4, size = 6, prob = 2/3, lower.tail = FALSE, log.p = FALSE) 
+
+# Question 7
+Que7 <- pnorm(1, mean = 0, sd = 1)
+print(Que7)
+
+# Question 8
+Q8 <- pnorm(2, mean = 0, sd =1)
+Q8 - Que7
+
+# Question 9
+dpois(x = 7, lambda = 10.4)
+dnorm(0.5, mean = 0, sd = 1)
+dnorm(1, mean = 0, sd = 1)
+pnorm(0.5, mean = 0, sd = 1)
+# How many points?
+n = 13
+
+# Create a vector of x-values from -4 to 4:
+x = seq(from = -6, to = 6, length.out = n)
+
+# Create the corresponding y-values:
+y = dnorm(x, mean = 0, sd = 1)
+
+# plot!
+plot(y ~ x, type = "l")
+# How many points?
+n = 1000
+
+# Create a vector of x-values from -4 to 4:
+x = seq(from = -6, to = 6, length.out = n)
+
+# Create the corresponding y-values:
+y = dnorm(x, mean = 0, sd = 1)
+
+# plot!
+plot(y ~ x, type = "l", ylab = "Probability Density")
+
+y_2 = dnorm(x, mean = 0, sd = 2)
+
+y_2 = dnorm(x, mean = 0, sd = 2) 
+
+y2 = dnorm(x, mean = -2, sd= 1) 
+
+
+
+
+
+plot(y ~ x, type = "l", ylab = "Probability Density") 
+
+points(y_2 ~ x, type = "l", lty  = 2) 
+
+points(y2 ~ x, type = "l", ylab = "Probability Density", lty  = 2) 
+
+
+
+y_cdf_1 = pnorm(x, mean = 0, sd = 1) 
+
+plot(y_cdf_1 ~ x, type = "l", ylab = "cumulative density") 
+
+y_cdf3 = pnorm(x, mean= -2, sd=1) 
+
+
+
+y_cdf_2 = pnorm(x, mean = 0, sd = 2) 
+
+plot(y_cdf_1 ~ x, type = "l", ylab = "Cumulative Density") 
+
+points(y_cdf3 ~ x, type = "l", lty = 2) 
+
+plot() 

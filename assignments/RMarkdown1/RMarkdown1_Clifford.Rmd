@@ -1,0 +1,29 @@
+---
+title: "R Markdown Documents - Part 1"
+subtitle: "Analysis of Environmental Data"
+author: "Lina Clifford"
+
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Introduction
+My name is **Lina Clifford**. I am a first semester master's student in the *Department of Environmental Conservation, with a focus in Forest Resources*, at University of Massachusetts Amherst. 
+
+# Concept List
+These are some of the things I want to learn in Analysis of Environmental Data class:
+
+1. Hypothesis-Testing
+2. How to use R for basic statistical modeling
+3. A foundational understanding of different statistical tests and when to use them
+
+# Course List
+Some of my favorite courses I've taken so far include:
+
+- Forest Measurements
+- Land Protection Tools and Techniques
+
+
+
