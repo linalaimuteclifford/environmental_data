@@ -1,0 +1,12 @@
+---
+title: "Lina's Project Homepage"
+author: "Lina Clifford"
+date: "2022-11-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Welcome to Lina's class page!
