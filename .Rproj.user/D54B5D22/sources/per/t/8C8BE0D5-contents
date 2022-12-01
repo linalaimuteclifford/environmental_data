@@ -1,0 +1,123 @@
+---
+title: 'Final Project: R Reference Guide'
+author: "Lina Clifford"
+date: "2022-11-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R Reference Guide {.tabset .tabset-pills}
+
+## Loading Data and Packages
+
+### Loading in Packages
+The functions library() and require() are used to load in data and packages.
+Here's a couple of examples: 
+
+```{r}
+# Load in the here package and the palmerpenguins package using the require() function
+require(here)
+require(palmerpenguins)
+
+# Load in those same two packages, but using the library() function
+library(here)
+library(palmerpenguins)
+```
+
+Note, these only work if the package has been installed or already exists on your machine.
+
+
+### Loading Data
+Loading in data works a little differently: you can use the here() or read.csv() functions. Here() specifies a subfolder within your working directory.
+Here are some examples:
+
+```{r}
+# Load in the 2021 ginkgo data to create a data frame called ginkgo
+ginko <- read.csv(here("data", "ginkgo_data_2021.csv"))
+```
+
+
+
+
+
+
+
+
+
+## Data Structures
+
+### C() function
+The function c() combines or concatenates its arguments into a vector (a 1-dimensional data structure consisting of 1 or more elements).
+
+* All of the elements must be of the same type.
+- I can’t combine character and numeric types in the same call to c()
+
+Here’s two examples using numeric and character data types:
+
+
+```{r}
+## Create a vector of numbers:
+num_vec  = c(1, 4, 8, 9, 13, 14)
+
+## Create a vector of characters:
+char_vec = c("a", "fish", "data is cool", "tree", "b", "love stats")
+```
+
+I can show the contents of a vector by typing the name of the vector, or using the print() function.
+
+```{r}
+## Typing the name of the vector into the console prints the contents
+num_vec
+
+
+## The print() function accomplishes the same task:
+print(char_vec)
+
+```
+
+### Length() function
+The length() function can be used to get the length of a vector, and also set the length.
+
+Here's an example using the num_vec from before
+```{r}
+#Determine length of num_vec
+length(num_vec)
+```
+### Matrix() function
+
+The matrix() function is used to create a matrix from a given set of values. You can input a data vector, set the number of columns, and set the number of rows.
+```{r}
+#Create a matrix from the num_vec vector
+matrix(num_vec, nrow = 3, ncol = 2)
+```
+
+### data.frame() function 
+
+The data.frame() function is used to create a dataframe, which is a fundamental data structure in r. 
+
+The difference between a matrix and a dataframe is that a dataframe allows you to have columns of differing data types (numeric, logical, character, etc.).
+```{r}
+#Combine char_vec and num_vec
+data.frame(char_vec, num_vec)
+```
+
+### Using ginkgo data.frame with nrow(), ncol(), and dim()
+
+Nrow(), ncol(), and dim() are each useful in learning more about the data structure of an object.
+
+* nrow() tells number of rows
+* ncol() tells number of columns
+* dim() tells 
+
+
+## Subsetting
+
+## Numerical Data Exploration
+
+## Graphical Data Exploration
+
+## Distribution Functions
+

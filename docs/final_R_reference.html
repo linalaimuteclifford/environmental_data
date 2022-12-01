@@ -13,7 +13,7 @@
 
 <meta name="date" content="2022-11-29" />
 
-<title>Lina’s Project Homepage</title>
+<title>Final Project: R Reference Guide</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -363,18 +363,131 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Lina’s Project Homepage</h1>
+<h1 class="title toc-ignore">Final Project: R Reference Guide</h1>
 <h4 class="author">Lina Clifford</h4>
 <h4 class="date">2022-11-29</h4>
 
 </div>
 
 
-<p>Welcome to Lina’s class page!</p>
-<p><a href="final_R_reference.html">Final Project: R Reference
-Guide</a></p>
-<p><a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">Guide
-to R Markdown Things</a></p>
+<div id="r-reference-guide" class="section level1 tabset tabset-pills">
+<h1 class="tabset tabset-pills">R Reference Guide</h1>
+<div id="loading-data-and-packages" class="section level2">
+<h2>Loading Data and Packages</h2>
+<div id="loading-in-packages" class="section level3">
+<h3>Loading in Packages</h3>
+<p>The functions library() and require() are used to load in data and
+packages. Here’s a couple of examples:</p>
+<pre class="r"><code># Load in the here package and the palmerpenguins package using the require() function
+require(here)</code></pre>
+<pre><code>## Loading required package: here</code></pre>
+<pre><code>## here() starts at C:/Users/linac/OneDrive - University of Massachusetts/Courses/Fall2022/environmental_data</code></pre>
+<pre class="r"><code>require(palmerpenguins)</code></pre>
+<pre><code>## Loading required package: palmerpenguins</code></pre>
+<pre class="r"><code># Load in those same two packages, but using the library() function
+library(here)
+library(palmerpenguins)</code></pre>
+<p>Note, these only work if the package has been installed or already
+exists on your machine.</p>
+</div>
+<div id="loading-data" class="section level3">
+<h3>Loading Data</h3>
+<p>Loading in data works a little differently: you can use the here() or
+read.csv() functions. Here() specifies a subfolder within your working
+directory. Here are some examples:</p>
+<pre class="r"><code># Load in the 2021 ginkgo data to create a data frame called ginkgo
+ginko &lt;- read.csv(here(&quot;data&quot;, &quot;ginkgo_data_2021.csv&quot;))</code></pre>
+</div>
+</div>
+<div id="data-structures" class="section level2">
+<h2>Data Structures</h2>
+<div id="c-function" class="section level3">
+<h3>C() function</h3>
+<p>The function c() combines or concatenates its arguments into a vector
+(a 1-dimensional data structure consisting of 1 or more elements).</p>
+<ul>
+<li>All of the elements must be of the same type.</li>
+<li>I can’t combine character and numeric types in the same call to
+c()</li>
+</ul>
+<p>Here’s two examples using numeric and character data types:</p>
+<pre class="r"><code>## Create a vector of numbers:
+num_vec  = c(1, 4, 8, 9, 13, 14)
+
+## Create a vector of characters:
+char_vec = c(&quot;a&quot;, &quot;fish&quot;, &quot;data is cool&quot;, &quot;tree&quot;, &quot;b&quot;, &quot;love stats&quot;)</code></pre>
+<p>I can show the contents of a vector by typing the name of the vector,
+or using the print() function.</p>
+<pre class="r"><code>## Typing the name of the vector into the console prints the contents
+num_vec</code></pre>
+<pre><code>## [1]  1  4  8  9 13 14</code></pre>
+<pre class="r"><code>## The print() function accomplishes the same task:
+print(char_vec)</code></pre>
+<pre><code>## [1] &quot;a&quot;            &quot;fish&quot;         &quot;data is cool&quot; &quot;tree&quot;         &quot;b&quot;           
+## [6] &quot;love stats&quot;</code></pre>
+</div>
+<div id="length-function" class="section level3">
+<h3>Length() function</h3>
+<p>The length() function can be used to get the length of a vector, and
+also set the length.</p>
+<p>Here’s an example using the num_vec from before</p>
+<pre class="r"><code>#Determine length of num_vec
+length(num_vec)</code></pre>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="matrix-function" class="section level3">
+<h3>Matrix() function</h3>
+<p>The matrix() function is used to create a matrix from a given set of
+values. You can input a data vector, set the number of columns, and set
+the number of rows.</p>
+<pre class="r"><code>#Create a matrix from the num_vec vector
+matrix(num_vec, nrow = 3, ncol = 2)</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    9
+## [2,]    4   13
+## [3,]    8   14</code></pre>
+</div>
+<div id="data.frame-function" class="section level3">
+<h3>data.frame() function</h3>
+<p>The data.frame() function is used to create a dataframe, which is a
+fundamental data structure in r.</p>
+<p>The difference between a matrix and a dataframe is that a dataframe
+allows you to have columns of differing data types (numeric, logical,
+character, etc.).</p>
+<pre class="r"><code>#Combine char_vec and num_vec
+data.frame(char_vec, num_vec)</code></pre>
+<pre><code>##       char_vec num_vec
+## 1            a       1
+## 2         fish       4
+## 3 data is cool       8
+## 4         tree       9
+## 5            b      13
+## 6   love stats      14</code></pre>
+</div>
+<div id="using-ginkgo-data.frame-with-nrow-ncol-and-dim" class="section level3">
+<h3>Using ginkgo data.frame with nrow(), ncol(), and dim()</h3>
+<p>Nrow(), ncol(), and dim() are each useful in learning more about the
+data structure of an object.</p>
+<ul>
+<li>nrow() tells number of rows</li>
+<li>ncol() tells number of columns</li>
+<li>dim() tells</li>
+</ul>
+</div>
+</div>
+<div id="subsetting" class="section level2">
+<h2>Subsetting</h2>
+</div>
+<div id="numerical-data-exploration" class="section level2">
+<h2>Numerical Data Exploration</h2>
+</div>
+<div id="graphical-data-exploration" class="section level2">
+<h2>Graphical Data Exploration</h2>
+</div>
+<div id="distribution-functions" class="section level2">
+<h2>Distribution Functions</h2>
+</div>
+</div>
 
 
 

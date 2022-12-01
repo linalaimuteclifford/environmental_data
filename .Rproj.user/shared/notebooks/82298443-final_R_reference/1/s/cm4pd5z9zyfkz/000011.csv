@@ -1,0 +1,15 @@
+"0","## The print() function accomplishes the same task:
+print(char_vec)
+"
+"1","[1]"
+"1"," ""a""           "
+"1"," ""fish""        "
+"1"," ""data is cool"""
+"1"," ""tree""        "
+"1","
+"
+"1","[5]"
+"1"," ""b""           "
+"1"," ""love stats""  "
+"1","
+"
