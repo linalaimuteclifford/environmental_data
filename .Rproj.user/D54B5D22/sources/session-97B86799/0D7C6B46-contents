@@ -1,0 +1,238 @@
+---
+title: 'ECO 602 Final Project: Data Analysis'
+author: "Lina Clifford"
+date: "2022-12-14"
+output: html_document
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo = FALSE}
+#HIDE THIS CHUNK
+#Read in data
+delomys <- read.csv("delomys.csv", header = TRUE, sep = ",")
+```
+
+# Numerical Exploration
+Summary statistics of body length and body mass:
+```{r, echo=FALSE}
+#Generate summary statistics on the body length column
+summary(delomys$body_length)
+```
+```{r, echo=FALSE}
+#Generate summary statistics on the body mass column
+summary(delomys$body_mass)
+```
+
+Test normality of body length and body mass using the shapiro.test function:
+```{r, echo=FALSE}
+#Test normality of body length
+shapiro.test(delomys$body_length)
+```
+```{r, echo=FALSE}
+#Test normality of body mass
+shapiro.test(delomys$body_mass)
+```
+
+Since the p-values for both Shapiro tests are less than 0.05, we reject the null hypothesis and accept the alternative hypothesis which is that the data are NOT normally distributed.
+
+
+# Questions 1 - 4: Graphical Exploration
+```{r fig.width= 7, fig.height = 7, echo=FALSE}
+# Create scatterplot of body length and body mass
+plot(delomys$body_mass, delomys$body_length, xlab = 'Body Mass (grams)', ylab = 'Body Length (centimeters)', main = 'Scatter Plot of Body Mass and Body Length')
+```
+
+ 
+```{r fig.width=7, fig.height = 7, echo=FALSE}
+# Create histogram of body mass
+hist(delomys$body_mass,  xlab = 'Body Mass (grams)', ylab = 'Frequency', main = 'Histogram of Body Mass', xlim = c(0, 120), ylim = c(0, 500))
+```
+
+```{r fig.width=7, fig.height = 7, echo=FALSE}
+# Create histogram of body length
+hist(delomys$body_length,  xlab = 'Body Length (centimeters)', ylab = 'Frequency', main = 'Histogram of Body Length', xlim = c(0, 300), ylim = c(0, 800))
+```
+
+```{r fig.width=7, fig.height = 7, echo=FALSE}
+# Create conditional box plot of body mass conditioned by species
+boxplot( delomys$body_mass ~ delomys$binomial, xlab = 'Species', ylab = 'Body Mass (grams)', main = 'Conditional Boxplot: Species and Body Mass')
+```
+
+```{r fig.width=7, fig.height = 7, echo=FALSE}
+# Create conditional box plot of body mass conditioned by sex
+boxplot( delomys$body_mass ~ delomys$sex, xlab = 'Sex', ylab = 'Body Mass (grams)', main = 'Conditional Boxplot: Sex and Body Mass')
+```
+
+```{r fig.width=7, fig.height = 7, echo=FALSE}
+#Create x label dataframe
+CondPlotNames = c("female\nDelomys dorsalis", "male\nDelomys dorsalis", "female\nDelomys Sublineatus", "male\nDelomys Sublineatus")
+
+# Create conditional box plot of body mass conditioned by species and sex
+boxplot(body_mass ~ sex:binomial, data = delomys, xlab = 'Sex and Species', ylab = 'Body Mass (grams)', main = 'Conditional Boxplot: Body Mass ~ Sex:Species', names = CondPlotNames, cex.axis = 0.6)
+```
+
+
+**Question 1: Qualitatively describe the relationship between body mass and length. Does the relationship seem linear, curved, nonexistent?**
+
+There appears to be a linear relationship between body mass and body length, but this pattern is slightly weaker body masses of 65 and greater as there's more variability. 
+ 
+
+
+**Question 2: Qualitatively describe the shapes of the histograms. Do the data appear normally-distributed? Explain why or why not. Explain why we care (or not) whether the data are normally distributed?**
+
+The body mass data appears fairly normally distributed, but the body length data do not appear normally-distributed. The body mass histogram resembles a bell shaped distribution but the body length distribution is largely centered around a value of 120 and the histogram is very tall and skinny. We care that the data are normally distributed because normal distribution is a key assumption in some of the statistical tests we may want to run.
+
+**Question 3: Using both the histograms and normality tests, do you think the (unconditioned) body masses and body length are normally-distributed? Make sure you contrast your visual assessment of normality to the results of the numerical normality tests.**
+
+The normality test showed that neither the body mass or the body length data are normally distributed. The shape of the body length histogram also gives reason to believe that the data is not normally distributed, however the body mass histogram appears normally distributed. From the shapiro test and graphical analysis, I think both the body mass and body length data are not normally distributed.
+
+**Question 4: Examine the three conditional boxplots.Describe any graphical evidence you see for body mass differences based on species and/or sex.**
+
+Body mass seems to be greater for males and for the Delomys dorsalis species. This is apparent in all three conditional boxplots.
+ 
+ 
+ 
+# Model Building
+Fit five models using the lm() function
+```{r, echo=FALSE}
+# Fit five models
+fit1 <- lm(delomys$body_length ~ delomys$body_mass)
+
+fit2 <- lm(delomys$body_mass ~ delomys$sex) 
+
+fit3 <- lm(delomys$body_mass ~ delomys$binomial)
+
+fit4 <- lm(delomys$body_mass ~ delomys$sex+delomys$binomial) 
+
+fit5 <- lm(delomys$body_mass ~ delomys$sex*delomys$binomial)
+```
+
+# Model Diagnostics
+Check each model's residual normality, first using a graphical approach.
+```{r, echo=FALSE}
+# Create historgrams of residuals for each model
+hist(residuals(fit1))
+hist(residuals(fit2))
+hist(residuals(fit3))
+hist(residuals(fit4))
+hist(residuals(fit5))
+```
+
+
+Check normality of residuals using shaprio test
+```{r, echo=FALSE}
+#use shaprio test to check model residuals
+shapiro.test(residuals(fit1))
+shapiro.test(residuals(fit2))
+shapiro.test(residuals(fit3))
+shapiro.test(residuals(fit4))
+shapiro.test(residuals(fit5))
+```
+
+# Question 5-6: Model Assumptions
+
+**Question 5: What do you conclude about residual normality based on the numerical and graphical diagnostics?**
+Based on the numerical diagnostics, I do not believe the residuals are normally distributed. For each shapiro test of the model residuals, the p-value was less than 0.05 which means we reject the null hypothesis that the population is normally distributed. The residual histograms appear normally distributed except for "fit1." Despite this, I believe that the model residuals are not normally distributed.
+
+**Question 6: Are violations of the normality assumption equally severe for all the models?**
+No, the violation of normality is not equally severe for all the models. "fit1" has the most severe non-normality with a shapiro p-value of less than 2.2e-16. "fit2" has the least non-normality with a shapiro p-value of 0.0001541 and a fairly normal looking histogram.
+
+
+# Model Interpretation
+```{r, echo=FALSE}
+knitr::kable(coef(summary(fit1)), digits = 2)
+knitr::kable(anova(fit2), digits = 2)
+knitr::kable(anova(fit3), digits = 2)
+knitr::kable(anova(fit4), digits = 2)
+knitr::kable(anova(fit5), digits = 2)
+```
+
+# Questions 7-9 Simple Linear Regression
+```{r, echo=FALSE}
+summary(fit1)
+```
+
+**Question 7: What is the magnitude of the mass/length relationship?**
+
+The magnitude of the mass/length relationship is 0.5551. This is the adjusted r squared value.
+
+**Question 8: What is the expected body length of an animal that weighs 100g?**
+
+The expected body length of an animal that weights 100g is 163.6745365.
+
+**Question 9: What is the expected body length of an animal that weights 0g?**
+
+The expected body length of an animal that weighs 0g is 76.12466.
+ 
+  
+  
+# Questions 10-13: Body Mass Coefficient Tables
+```{r, echo=FALSE}
+# print model coefficient tables for each of the body mass model fits
+summary(fit2)
+summary(fit3)
+summary(fit4)
+summary(fit5)
+```
+
+**Question 10: What is the base level for sex?**
+
+The base level for sex is female.
+
+**Question 11: What is the base level for binomial?**
+
+The base level for binomial is Delomys dorsalis.
+
+**Question 12: Which sex is heavier? How do you know?**
+The male sex is heavier because in mass ~ sex model coefficient table, female is the base level and males have an additional 2.7841g of weight to the female weight.
+
+**Question 13: Which species is heavier? How do you know?**
+The Delomys dorsalis species is heavier because in the mass ~ binomial model coefficient table, Delomys dorsalis is the base level and Delomys sublineatus has a negative slope of -7.6831 meaning sublineatus is 7.6831g less than dorsalis. 
+
+
+# Questions 14-16: ANOVA Tables
+```{r, echo=FALSE}
+# print ANOVA tables for each of the body mass model
+anova(fit2)
+anova(fit3)
+anova(fit4)
+anova(fit5)
+```
+
+**Question 14: Are sex and species significant predictors for body mass?**
+
+Yes, sex and species are both significant predictors for body mass. The p-values for the body mass ~ sex model and body mass ~ binomial model are both less than 0.05 which means they are significant predictors. The species p-value is less than the sex p-value which indicates species is more significant than sex.
+
+**Question 15: Is there a significant interaction?**
+No, there is not a significant interaction between sex and species.
+
+**Question 16: Examine the p-values for the main effects (sex and species) in all four of the ANOVA tables. Does the significance level of either main effect change very much among the different tables?**
+
+No, the significance level of sex and species does not change very much among the different tables.
+
+
+# Model Comparison: Body Mass
+
+Choose which model is best by using AIC.
+
+```{r, echo=FALSE}
+# Use AIC() to determine best model by looking for lowest AIC
+AIC(fit2)
+AIC(fit3)
+AIC(fit4)
+AIC(fit5)
+```
+
+
+# Questions 17-18: Model Comparison
+
+**Question 17: Which two models have the lowest AIC?**
+
+"fit4" and "fit5" had the lowest AIC at 12896.7286 and 12898.7248, respectively.
+
+**Question 18: Which two models with the lowest AIC scores would you select? Explain your decision based on model fit and the complexity/understanding trade off.**
+
+I would choose the additive model, which is "fit4," because it's AIC is the second lowest (only 2 points higher than "fit5") and is less complex to understand or explain. "fit4" says models mass by sex and species while "fit5" models mass by the interaction between sex and species and there isn't a significant interaction between the two. For this reason, "fit5" can be more complicated and less intuitive to understand.

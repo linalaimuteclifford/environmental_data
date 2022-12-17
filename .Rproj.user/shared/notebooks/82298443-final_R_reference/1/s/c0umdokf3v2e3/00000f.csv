@@ -1,0 +1,5 @@
+"0","## Create a vector of numbers:"
+"0","num_vec  = c(1, 4, 8, 9, 13, 14)"
+"0",""
+"0","## Create a vector of characters:"
+"0","char_vec = c(""a"", ""fish"", ""data is cool"", ""tree"", ""b"", ""love stats"")"

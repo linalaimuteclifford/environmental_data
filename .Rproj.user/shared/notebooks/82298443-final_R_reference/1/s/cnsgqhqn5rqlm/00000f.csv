@@ -1,4 +1,7 @@
-"0","require(palmerpenguins)
-"
-"2","Loading required package: palmerpenguins
-"
+"0","# Load in the here package and the palmerpenguins package using the require() function"
+"0","require(here)"
+"0","require(palmerpenguins)"
+"0",""
+"0","# Load in those same two packages, but using the library() function"
+"0","library(here)"
+"0","library(palmerpenguins)"

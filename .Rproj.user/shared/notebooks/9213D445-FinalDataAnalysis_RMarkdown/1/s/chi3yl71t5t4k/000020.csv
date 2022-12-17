@@ -1,0 +1,2 @@
+"0","# Create historgrams of residuals for each model"
+"0","hist(residuals(fit1))"

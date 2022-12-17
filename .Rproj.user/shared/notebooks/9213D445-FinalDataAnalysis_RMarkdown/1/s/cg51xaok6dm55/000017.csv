@@ -1,0 +1,3 @@
+"0","#HIDE THIS CHUNK"
+"0","#Read in data"
+"0","delomys <- read.csv(""delomys.csv"", header = TRUE, sep = "","")"

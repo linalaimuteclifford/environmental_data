@@ -1,0 +1,2 @@
+"0","# Load in the 2021 ginkgo data to create a data frame called ginkgo"
+"0","ginkgo <- read.csv(here(""data"", ""ginkgo_data_2021.csv""))"

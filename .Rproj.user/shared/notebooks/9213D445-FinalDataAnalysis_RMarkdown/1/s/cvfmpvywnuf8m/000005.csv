@@ -1,0 +1,5 @@
+"0","#Create x label dataframe"
+"0","CondPlotNames = c(""female\nDelomys dorsalis"", ""male\nDelomys dorsalis"", ""female\nDelomys Sublineatus"", ""male\nDelomys Sublineatus"")"
+"0",""
+"0","# Create conditional box plot of body mass conditioned by species and sex"
+"0","boxplot(body_mass ~ sex:binomial, data = delomys, xlab = 'Sex and Species', ylab = 'Body Mass (grams)', main = 'Conditional Boxplot: Body Mass ~ Sex:Species', names = CondPlotNames, cex.axis = 0.6)"

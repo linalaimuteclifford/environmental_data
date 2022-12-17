@@ -1,0 +1,2 @@
+"0","# Create scatterplot of body length and body mass"
+"0","plot(delomys$body_mass, delomys$body_length, xlab = 'Body Mass (grams)', ylab = 'Body Length (centimeters)', main = 'Scatter Plot of Body Mass and Body Length')"

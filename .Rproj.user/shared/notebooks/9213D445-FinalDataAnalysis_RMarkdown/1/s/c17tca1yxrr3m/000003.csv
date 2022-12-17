@@ -1,0 +1,2 @@
+"0","# Create conditional box plot of body mass conditioned by sex"
+"0","boxplot( delomys$body_mass ~ delomys$sex, xlab = 'Sex', ylab = 'Body Mass (grams)', main = 'Conditional Boxplot: Sex and Body Mass')"

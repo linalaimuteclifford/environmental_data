@@ -1,0 +1,8 @@
+"0","# use dim() to get the dimensions of the ginkgo data frame
+dim(ginkgo)
+"
+"1","[1]"
+"1"," 756"
+"1","   6"
+"1","
+"

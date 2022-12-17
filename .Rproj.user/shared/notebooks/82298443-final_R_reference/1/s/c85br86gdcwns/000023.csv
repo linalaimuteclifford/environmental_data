@@ -1,0 +1,1 @@
+"0","hist(ginkgo$notch_depth, breaks = 5, main = ""Histogram of Leaf Notch Depth"", xlab = ""Notch Depth (mm)"", ylab = ""Frequency"", col = ""red"")"

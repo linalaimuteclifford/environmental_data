@@ -1,0 +1,7 @@
+"0","# qbinom example: calculate the 15th quantile of a binomial distribution with 20 trials and a probability of success of 0.5
+qbinom(0.15, size = 20, prob = 0.5)
+"
+"1","[1]"
+"1"," 8"
+"1","
+"

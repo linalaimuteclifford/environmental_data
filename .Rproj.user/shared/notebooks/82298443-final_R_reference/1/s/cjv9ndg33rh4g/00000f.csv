@@ -1,6 +1,5 @@
-"0","#Create a matrix from the num_vec vector
-matrix(num_vec, nrow = 3, ncol = 2)
-"
+"0","#Create a matrix from the num_vec vector"
+"0","matrix(num_vec, nrow = 3, ncol = 2)"
 "1","    "
 "1"," [,1]"
 "1"," [,2]"

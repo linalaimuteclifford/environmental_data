@@ -1,0 +1,2 @@
+"0","# Create histogram of body length"
+"0","hist(delomys$body_length,  xlab = 'Body Length (centimeters)', ylab = 'Frequency', main = 'Histogram of Body Length', xlim = c(0, 300), ylim = c(0, 800))"

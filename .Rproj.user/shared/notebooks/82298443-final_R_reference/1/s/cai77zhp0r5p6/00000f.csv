@@ -1,0 +1,7 @@
+"0","# calculate the mean of the max depth data within the ginkgo data frame
+mean(ginkgo$max_depth)
+"
+"1","[1]"
+"1"," 58.51455"
+"1","
+"

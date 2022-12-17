@@ -1,0 +1,2 @@
+"0","# Create conditional box plot of body mass conditioned by species"
+"0","boxplot( delomys$body_mass ~ delomys$binomial, xlab = 'Species', ylab = 'Body Mass (grams)', main = 'Conditional Boxplot: Species and Body Mass')"

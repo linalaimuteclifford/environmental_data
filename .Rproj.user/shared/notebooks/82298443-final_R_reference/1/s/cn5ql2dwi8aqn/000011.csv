@@ -1,0 +1,7 @@
+"0","# qnorm example: calculating the 85th percentile of the values in a popuation that has a mean of 110 and a standard deviation of 4
+qnorm(0.85, mean = 110, sd = 4)
+"
+"1","[1]"
+"1"," 114.1457"
+"1","
+"

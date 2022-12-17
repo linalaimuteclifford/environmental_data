@@ -1,0 +1,1 @@
+"0","hist(ginkgo$petiole_length, breaks = 5, main = ""Histogram of Petiole Length"", xlab = ""Petiole Length (mm)"", ylab = ""Frequency"", col = ""orange"")"
